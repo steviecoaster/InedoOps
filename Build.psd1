@@ -1,5 +1,5 @@
 @{
-    ModuleManifest           = "./source/InedOps.psd1"
+    ModuleManifest           = "./source/InedoOps.psd1"
     CopyDirectories          = "data"
     Suffix                   = "Suffix.ps1"
     OutputDirectory          = ".."
