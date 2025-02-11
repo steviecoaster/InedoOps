@@ -30,7 +30,7 @@ CompanyName = 'Unknown'
 Copyright = '(c) stephen. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'This PowerShell aids in the administration of an Inedo ProGet server.'
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -110,7 +110,7 @@ PrivateData = @{
         # ReleaseNotes = ''
 
         # Prerelease string of this module
-        # Prerelease = ''
+        Prerelease = ''
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         # RequireLicenseAcceptance = $false

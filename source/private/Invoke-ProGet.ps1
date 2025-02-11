@@ -42,7 +42,9 @@ function Invoke-ProGet {
         else {
             @{Protocol = 'http'; Port = $Configuration['NonSslPort'] }
         }
-        $Uri = '{0}:{1}/{2}' -f "$($ssl['Protocol'])://$($Configuration['Hostname'])", $ssl['Port'], $Slug.TrimStart('/')
+        $Uri = '{0}:{1}{2}' -f "$($ssl['Protocol'])://$($Configuration['Hostname'])", $ssl['Port'], $Slug.TrimEnd('/')
+
+        Write-Verbose -Message $Uri
         $params = @{
             Uri                  = $Uri
             Method               = $Method
@@ -72,7 +74,7 @@ function Invoke-ProGet {
             Write-Verbose $params.Uri
         }
 
-        Write-Verbose ($Body | ConvertTo-Json -Depth 5)
+        #Write-Verbose ($Body | ConvertTo-Json -Depth 5)
         Invoke-RestMethod @params
     }
 }
