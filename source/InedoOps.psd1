@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = '.\InedOps.psm1'
+RootModule = '.\InedoOps.psm1'
 
 # Version number of this module.
 ModuleVersion = '0.0.1'
@@ -51,7 +51,7 @@ Description = 'This PowerShell aids in the administration of an Inedo ProGet ser
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @()
+RequiredModules = @(@{ModuleName='Configuration' ; ModuleVersion = '1.6.0'})
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
