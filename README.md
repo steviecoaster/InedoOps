@@ -69,3 +69,5 @@ This example:
 - Credential is a PSCredential object. _Currently only supports API key auth, use anything for username, and your api key for the password_
 - -UseSSL stores the web uri as https://
 - SslPort is the SSL port your instance uses
+
+Once you have your configuration created, you can begin to use the functions available in the module.

@@ -1,5 +1,37 @@
 function Get-ProGetFeed {
-    [CmdletBinding()]
+    <#
+    .SYNOPSIS
+    Returns information about the available feeds in your ProGet instance
+    
+    .DESCRIPTION
+    Supports returning all feeds, feeds by type, or by name
+    
+    .PARAMETER Feed
+    The feed to return
+    
+    .PARAMETER Type
+    The type of feed to return
+    
+    .EXAMPLE
+    Get-ProGetFeed
+
+    Return all feeds
+
+    .EXAMPLE
+    Get-ProGetFeed -Type nuget
+
+    Return all nuget feeds
+
+    .EXAMPLE
+
+    Get-ProGetFeed -Feed ChocolateyPackages
+
+    Return the ChocolateyPackages feed
+    
+    .NOTES
+
+    #>
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/InedoOps/Get-ProGetFeed')]
     Param(
         [Parameter()]
         [String]

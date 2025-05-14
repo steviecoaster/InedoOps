@@ -6,7 +6,7 @@ function Invoke-ProGet {
         $Slug,
 
         [Parameter()]
-        [Microsoft.PowerShell.Commands.WebRequestMethod]
+        [String]
         $Method = 'GET',
 
         [Parameter()]

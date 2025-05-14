@@ -2,20 +2,27 @@ function New-ProGetAsset {
     <#
         .Synopsis
         Transfers a file to a ProGet asset directory.
+       
         .Description
         Transfers a file to a ProGet asset directory. This function performs automatic chunking
         if the file is larger than a specified threshold.
+       
         .Parameter FileName
         Name of the file to upload from the local file system.
+        
         .Parameter EndpointUrl
         Full URL of the ProGet asset directory's API endpoint. This is typically something like http://proget/endpoints/<directoryname>
+        
         .Parameter AssetName
         Full path of the asset to create in ProGet's asset directory.
+        
         .Parameter ChunkSize
         Uploads larger than this value will be uploaded using multiple requests. The default is 5 MB.
+       
         .Example
         New-ProGetAsset -FileName C:\Files\Image.jpg -AssetName images/image.jpg -EndpointUrl http://proget/endpoints/MyAssetDir
     #>
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/InedoOps/New-ProGetAsset')]
     param(
         [Parameter(Mandatory = $true)]
         [string]
