@@ -57,8 +57,11 @@ choco install inedoops -y -s https://community.chocolatey.org/api/v2
 
 ## Getting Started
 
-This module uses the PowerShell `Configuration` module to store the configuration
-for connecting to your Inedo ProGet instance. An example of this is:
+### Setting Configuration
+
+This module uses the PowerShell `Configuration` module to store the configuration the module will use to connect to your ProGet instance.
+
+An example of this is:
 
 `Set-ProGetConfiguration -Name ProGet -Hostname proget.steviecoaster.dev -Credential (Get-Credential) -UseSSL -SslPort 443`
 
@@ -69,5 +72,3 @@ This example:
 - Credential is a PSCredential object. _Currently only supports API key auth, use anything for username, and your api key for the password_
 - -UseSSL stores the web uri as https://
 - SslPort is the SSL port your instance uses
-
-Once you have your configuration created, you can begin to use the functions available in the module.
