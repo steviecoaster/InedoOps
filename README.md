@@ -31,8 +31,8 @@ You can build this module from source. Doing so will require the ModuleBuilder m
 Install-Module ModuleBuilder -Scope CurrentUser
 git clone https://github.com/steviecoaster/InedoOps.git
 cd InedoOps
-. .\Build.ps1
-Import-Module .\InedoOps\0.0.1\InedoOps.psd1
+. .\Build.ps1 # Use -Semver to define a custom version
+Import-Module .\InedoOps\0.1.0\InedoOps.psd1 # Or whatever version you specified during build script execution
 ```
 
 ### Install through the PowerShell Gallery
