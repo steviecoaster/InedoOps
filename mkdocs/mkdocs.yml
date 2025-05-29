@@ -1,0 +1,24 @@
+site_name: Pagootle Documentation
+theme: readthedocs
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Command Reference:
+    - Get-ProGetConfiguration: ./Commands/Get-ProGetConfiguration.md
+    - Get-ProGetConnector: ./Commands/Get-ProGetConnector.md
+    - Get-ProGetFeed: ./Commands/Get-ProGetFeed.md
+    - Get-ProGetTask: ./Commands/Get-ProGetTask.md
+    - Get-ProGetUser: ./Commands/Get-ProGetUser.md
+    - Merge-Directory: ./Commands/Merge-Directory.md
+    - New-ProgetAsset: ./Commands/New-ProgetAsset.md
+    - New-ProGetConnector: ./Commands/New-ProGetConnector.md
+    - New-ProGetFeed: ./Commands/New-ProGetFeed.md
+    - New-ProGetUser: ./Commands/New-ProGetUser.md
+    - New-ProGetGroup: ./Commands/New-ProGetGroup.md
+    - Publish-ProGetAsset: ./Commands/Publish-ProGetAsset.md
+    - Remove-ProGetConnector: ./Commands/Remove-ProGetConnector.md
+    - Remove-ProGetFeed: ./Commands/Remove-ProGetFeed.md
+    - Set-ProGetConfiguration: ./Commands/Set-ProGetConfiguration.md
+    - Set-ProGetSslConfig: ./Commands/Set-ProGetSslConfig.md
+    - Set-ProGetUserPassword: ./Commands/Set-ProGetUserPassword.md
+  - GitHub: https://github.com/steviecoaster/Pagootle
