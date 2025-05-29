@@ -32,6 +32,9 @@ function Invoke-ProGet {
 
     begin {
         $Configuration = Get-ProGetConfiguration
+        
+        # If we call this from New-ProGetFeed we have to use a special API key because ProGet is...well, silly.
+        $caller = (Get-PSCallStack)[1].Command
     }
 
     end {
@@ -49,7 +52,12 @@ function Invoke-ProGet {
             Uri                  = $Uri
             Method               = $Method
             ContentType          = $ContentType
-            Headers              = @{'X-ApiKey' = $Configuration.Credential.GetNetworkCredential().Password }
+            Headers              = if ($caller -ne 'New-ProGetFeed') {
+                @{'X-ApiKey' = $Configuration.Credential.GetNetworkCredential().Password }
+            } 
+            else {
+                @{'X-ApiKey' = $Configuration.ApiKey.GetNetworkCredential().Password }
+            }
             SkipCertificateCheck = $true
             Verbose              = $false
         }

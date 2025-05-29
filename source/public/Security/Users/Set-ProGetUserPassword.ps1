@@ -1,25 +1,17 @@
 function Set-ProGetUserPassword {
-    <#
+<#
     .SYNOPSIS
     Sets the password for a ProGet user account
-    
-    .DESCRIPTION
-    Long description
-    
+
     .PARAMETER Credential
-    The 
+    The credential object that contains the username and updated password for the account you wish to update
     
     .EXAMPLE
     Set-ProGetUserPassword -Credential (Get-Credential)
 
-    Pass a PSCredential object with the username and new password and the user account will be updated.
-    .EXAMPLE
-    Set-ProGetUserPassword -Username bob
-
-    Will prompt to enter a new password for the user bob
-    
-    #>
-    [Cmdletbinding()]
+    Pass a PSCredential object with the username and new password and the user account will be updated.    
+#>
+    [Cmdletbinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Set-ProGetUserPassword')]
     Param(
         [Parameter(Mandatory)]
         [Alias('Username')]

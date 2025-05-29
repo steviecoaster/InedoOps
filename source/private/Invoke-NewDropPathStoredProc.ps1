@@ -10,7 +10,8 @@ function Invoke-NewDropPathStoredProc {
         $DropPath = 'C:\drop'
     )
 
-    # Define SQL connection parameters
+
+    # Create the Drop Path directory
     if (-not $PSBoundParameters.ContainsKey('DropPath')) {
         $DropPath = Join-Path $DropPath -ChildPath $Feed
     }
@@ -18,6 +19,10 @@ function Invoke-NewDropPathStoredProc {
     if (-not (Test-Path $DropPath)) {
         $null = New-Item $DropPath -ItemType Directory
     }
+
+    # Assign permissions to the Inedo service user to the Drop Path
+    $ServiceUser = (Get-CimInstance Win32_Service -Filter "Name = 'INEDOPROGETWEBSVC'").StartName
+    Set-ServiceUserPermission -FilePath $DropPath -ServiceUser $ServiceUser -Permissions Modify
 
     # Create SQL query with parameterized stored procedure execution
     $query = @"

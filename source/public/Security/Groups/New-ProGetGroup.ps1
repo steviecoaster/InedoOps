@@ -2,17 +2,14 @@ function New-ProGetGroup {
     <#
     .SYNOPSIS
     Create a new user group in ProGet
-    
-    .DESCRIPTION
-    
-    
+        
     .PARAMETER Name
     The group to create
     
     .EXAMPLE
-    New-ProGetGroup - Name Pickles
+    New-ProGetGroup -Name SomeGroup
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/New-ProGetGroup')]
     Param(
         [Parameter(Mandatory)]
         [String]

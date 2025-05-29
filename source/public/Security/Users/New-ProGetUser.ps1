@@ -24,7 +24,7 @@ function New-ProGetUser {
     .EXAMPLE
     New-ProGetUser -Credential $cred -DisplayName 'Jim Thome' -EmailAddress jim@fabrikam.com -Group Administrators
     #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/New-ProGetUser')]
     Param(
         [Parameter(Mandatory)]
         [PSCredential]

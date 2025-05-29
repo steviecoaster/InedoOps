@@ -3,9 +3,6 @@ function Get-ProGetUser {
 .SYNOPSIS
 Returns user account data from ProGet
 
-.DESCRIPTION
-Long description
-
 .PARAMETER Username
 The username to return
 
@@ -19,7 +16,7 @@ Get-ProGetUser -Username bob
 
 Return data for user bob
 #>
-    [CmdletBinding()]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Get-ProGetUser')]
     Param(
         [Parameter()]
         [String]

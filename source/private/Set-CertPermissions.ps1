@@ -60,26 +60,16 @@ function Set-CertPermissions {
         $privateKey = $certificate.PrivateKey.CspKeyContainerInfo
         if ($privateKey.MachineKeyStore -and $privateKey.UniqueKeyContainerName) {
             $keyPath = Join-Path $env:ProgramData "Microsoft\Crypto\RSA\MachineKeys\$($privateKey.UniqueKeyContainerName)"
+            # Close the certificate store
+            $certStore.Close()
         }
         else {
             Write-Error "Unable to locate the private key for the certificate."
             $certStore.Close()
             return
         }
-
-        # Close the certificate store
-        $certStore.Close()
-
         # Grant NETWORK SERVICE read access to the private key
-        $acl = Get-Acl $keyPath
-        $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule(
-            $ServiceUser,
-            "Read",
-            "Allow"
-        )
-
-        $acl.SetAccessRule($accessRule)
-        Set-Acl -Path $keyPath -AclObject $acl
-
+        $ServiceUser = (Get-CimInstance Win32_Service -Filter "Name = 'INEDOPROGETWEBSVC'").StartName
+        Set-ServiceUserPermission -FilePath $keyPath -ServiceUser $ServiceUser -Permissions Read
     }
 }

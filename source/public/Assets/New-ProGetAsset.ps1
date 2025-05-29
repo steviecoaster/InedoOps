@@ -22,7 +22,7 @@ function New-ProGetAsset {
         .Example
         New-ProGetAsset -FileName C:\Files\Image.jpg -AssetName images/image.jpg -EndpointUrl http://proget/endpoints/MyAssetDir
     #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/InedoOps/New-ProGetAsset')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/New-ProGetAsset')]
     param(
         [Parameter(Mandatory = $true)]
         [string]
