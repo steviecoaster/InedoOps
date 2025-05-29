@@ -1,4 +1,4 @@
-# InedoOps : Manage Inedo ProGet with PowerShell
+# Pagootle : Manage Inedo ProGet with PowerShell
 
 This PowerShell modules allows an administrator the ability to manage an Inedo ProGet instance through the use of PowerShell.
 Currently this module provides the following capabilities:
@@ -29,10 +29,10 @@ You can build this module from source. Doing so will require the ModuleBuilder m
 
 ```powershell
 Install-Module ModuleBuilder -Scope CurrentUser
-git clone https://github.com/steviecoaster/InedoOps.git
-cd InedoOps
+git clone https://github.com/steviecoaster/Pagootle.git
+cd Pagootle
 . .\Build.ps1 # Use -Semver to define a custom version
-Import-Module .\InedoOps\0.1.0\InedoOps.psd1 # Or whatever version you specified during build script execution
+Import-Module .\Pagootle\0.1.0\Pagootle.psd1 # Or whatever version you specified during build script execution
 ```
 
 ### Install through the PowerShell Gallery
@@ -40,19 +40,19 @@ Import-Module .\InedoOps\0.1.0\InedoOps.psd1 # Or whatever version you specified
 #### Windows PowerShell (COMING SOON)
 
 ```powershell
-Install-Module InedoOps -Scope CurrentUser
+Install-Module Pagootle -Scope CurrentUser
 ```
 
 #### PowerShell 7+ (COMING SOON)
 
 ```powershell
-Install-PSResource InedoOps -Scope CurrentUser
+Install-PSResource Pagootle -Scope CurrentUser
 ```
 
 ### Chocolatey (COMING SOON)
 
 ```powershell
-choco install inedoops -y -s https://community.chocolatey.org/api/v2
+choco install Pagootle -y -s https://community.chocolatey.org/api/v2
 ```
 
 ## Getting Started
