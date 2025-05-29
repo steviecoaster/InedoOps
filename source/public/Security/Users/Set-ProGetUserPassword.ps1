@@ -11,7 +11,7 @@ function Set-ProGetUserPassword {
 
     Pass a PSCredential object with the username and new password and the user account will be updated.    
 #>
-    [Cmdletbinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Set-ProGetUserPassword')]
+    [Cmdletbinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Set-ProGetUserPassword')]
     Param(
         [Parameter(Mandatory)]
         [Alias('Username')]

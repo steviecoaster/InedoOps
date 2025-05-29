@@ -77,7 +77,7 @@ function New-ProGetFeed {
     Creates a new Docker feed named "DockerFeed" with specified connectors and retention rules.
 
     #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/New-ProGetFeed')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/New-ProGetFeed')]
     Param(
         [Parameter(Mandatory)]
         [String]

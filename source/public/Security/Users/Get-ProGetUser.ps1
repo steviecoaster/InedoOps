@@ -16,7 +16,7 @@ Get-ProGetUser -Username bob
 
 Return data for user bob
 #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Get-ProGetUser')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Get-ProGetUser')]
     Param(
         [Parameter()]
         [String]

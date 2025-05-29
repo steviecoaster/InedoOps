@@ -31,7 +31,7 @@ function Get-ProGetFeed {
     .NOTES
 
     #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Get-ProGetFeed')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Get-ProGetFeed')]
     Param(
         [Parameter()]
         [String]

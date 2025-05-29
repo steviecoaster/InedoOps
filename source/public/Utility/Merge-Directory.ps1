@@ -22,7 +22,7 @@ function Merge-Directory {
     
     Flattens the structure of "C:\MyFolder" by moving all files from subdirectories into the root of "C:\MyFolder" without confirmation.
 #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Merge-Directory', ConfirmImpact = 'High', SupportsShouldProcess)]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Merge-Directory', ConfirmImpact = 'High', SupportsShouldProcess)]
     Param(
         [Parameter(Mandatory)]
         [ValidateScript({ Test-Path $_ })]

@@ -24,7 +24,7 @@ function New-ProGetFeedDropPath {
     Drop Path will default to C:\Drop\MyFeed.
 
     #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/New-ProGetFeedDropPath')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/New-ProGetFeedDropPath')]
     Param(
         [Parameter(Mandatory)]
         [String]

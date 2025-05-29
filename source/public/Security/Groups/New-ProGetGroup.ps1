@@ -9,7 +9,7 @@ function New-ProGetGroup {
     .EXAMPLE
     New-ProGetGroup -Name SomeGroup
     #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/New-ProGetGroup')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/New-ProGetGroup')]
     Param(
         [Parameter(Mandatory)]
         [String]

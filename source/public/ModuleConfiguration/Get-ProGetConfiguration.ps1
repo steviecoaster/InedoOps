@@ -19,7 +19,7 @@ function Get-ProGetConfiguration {
 
     Retrieves the configuration for the configuration named "CustomConfige".
 #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Get-ProGetConfiguration')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Get-ProGetConfiguration')]
     Param(
         [Parameter()]
         [Alias('Name')]

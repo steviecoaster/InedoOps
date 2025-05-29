@@ -42,7 +42,7 @@ function Set-ProGetConfiguration {
 
     Sets the configuration for ProGet with a custom configuration name.
 #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Set-ProGetConfiguration' , DefaultParameterSetName = 'default')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Set-ProGetConfiguration' , DefaultParameterSetName = 'default')]
     Param(
         [Parameter(Mandatory)]
         [String]

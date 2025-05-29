@@ -27,7 +27,7 @@ function Remove-ProGetFeed {
 
     Pipes the output of `Get-ProGetFeed` to remove all listed feeds after confirmation.
 #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Remove-ProGetFeed', ConfirmImpact = 'High', SupportsShouldProcess)]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Remove-ProGetFeed', ConfirmImpact = 'High', SupportsShouldProcess)]
     Param(
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('Name')]

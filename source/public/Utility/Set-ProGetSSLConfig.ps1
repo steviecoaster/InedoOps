@@ -45,7 +45,7 @@ function Set-ProGetSslConfig {
   .NOTES
   
   #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Set-ProGetSslConfig')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Set-ProGetSslConfig')]
     Param(
         [Parameter(ParameterSetName = 'WindowsStore')]
         [Parameter(ParameterSetName = 'CertFile')]

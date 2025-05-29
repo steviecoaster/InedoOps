@@ -11,7 +11,7 @@ function Get-ProGetTask {
 
     Retrieves all tasks from ProGet.
 #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Get-ProGetTask')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Get-ProGetTask')]
     Param()
     
     end {
