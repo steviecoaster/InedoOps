@@ -57,10 +57,12 @@ function Set-CertPermissions {
         }
 
         # Get the private key file path
-        $privateKey = $certificate.PrivateKey.CspKeyContainerInfo
-        if ($privateKey.MachineKeyStore -and $privateKey.UniqueKeyContainerName) {
-            $keyPath = Join-Path $env:ProgramData "Microsoft\Crypto\RSA\MachineKeys\$($privateKey.UniqueKeyContainerName)"
-            # Close the certificate store
+        $privateKey = [System.Security.Cryptography.X509Certificates.RSACertificateExtensions]::GetRSAPrivateKey($certificate)
+        $uniqueName = $privateKey.key.uniquename
+        $keyPath = Join-Path $env:ProgramData "Microsoft\Crypto\RSA\MachineKeys\$($uniquename)"
+        
+        # Close the certificate store if we have a private key, otherwise error that there is a problem finding a private key
+        if (Test-Path $keyPath) {
             $certStore.Close()
         }
         else {
@@ -68,7 +70,8 @@ function Set-CertPermissions {
             $certStore.Close()
             return
         }
-        # Grant NETWORK SERVICE read access to the private key
+
+        # Grant Inedo Service user read access to the private key
         $ServiceUser = (Get-CimInstance Win32_Service -Filter "Name = 'INEDOPROGETWEBSVC'").StartName
         Set-ServiceUserPermission -FilePath $keyPath -ServiceUser $ServiceUser -Permissions Read
     }
