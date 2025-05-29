@@ -1,4 +1,10 @@
-# Pagootle : Manage Inedo ProGet with PowerShell
+# Pagootle : Manage Inedo ProGet with PowerShell (Formerly InedoOps)
+
+_Wait....why Pagootle? That's so odd!_
+
+Inedo has a command-line utility, `pgutil.exe`, which can be used to help administer Inedo ProGet. This PowerShell module is named after their [favorite pronunciation](https://docs.inedo.com/docs/proget/api/pgutil#how-is-pgutil-pronounced) of that tool! `InedoOps` sounded too much like "I need oops" in my head, and I just couldnt't handle it.
+
+## What's Included?
 
 This PowerShell modules allows an administrator the ability to manage an Inedo ProGet instance through the use of PowerShell.
 Currently this module provides the following capabilities:
@@ -12,6 +18,7 @@ Currently this module provides the following capabilities:
 - `New-ProGetAsset`
 - `New-ProGetConnector`
 - `New-ProGetFeed`
+- `New-ProGetFeedDropPath`
 - `New-ProGetGroup`
 - `New-ProGetUser`
 - `Publish-ProGetAsset`
@@ -28,22 +35,16 @@ Currently this module provides the following capabilities:
 You can build this module from source. Doing so will require the ModuleBuilder module from the PowerShell Gallery
 
 ```powershell
-Install-Module ModuleBuilder -Scope CurrentUser
+Install-PSResource ModuleBuilder -Scope CurrentUser
 git clone https://github.com/steviecoaster/Pagootle.git
 cd Pagootle
 . .\Build.ps1 # Use -Semver to define a custom version
-Import-Module .\Pagootle\0.1.0\Pagootle.psd1 # Or whatever version you specified during build script execution
+Import-Module .\0.0.1\Pagootle.psd1 # Or whatever version you specified during build script execution
 ```
 
 ### Install through the PowerShell Gallery
 
-#### Windows PowerShell (COMING SOON)
-
-```powershell
-Install-Module Pagootle -Scope CurrentUser
-```
-
-#### PowerShell 7+ (COMING SOON)
+#### PowerShell 7+
 
 ```powershell
 Install-PSResource Pagootle -Scope CurrentUser
@@ -72,3 +73,5 @@ This example:
 - Credential is a PSCredential object. _Currently only supports API key auth, use anything for username, and your api key for the password_
 - -UseSSL stores the web uri as https://
 - SslPort is the SSL port your instance uses
+
+Once you have configuration set, you can begin to use all the features of this module
