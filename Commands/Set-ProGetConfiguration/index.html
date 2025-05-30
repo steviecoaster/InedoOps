@@ -83,9 +83,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#syntax">SYNTAX</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#default-default">default (Default)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#apikey-default">Apikey (Default)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#ssl">ssl</a>
+    <li class="toctree-l3"><a class="reference internal" href="#both">Both</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#credential">Credential</a>
     </li>
         </ul>
     </li>
@@ -98,6 +100,10 @@
     <li class="toctree-l3"><a class="reference internal" href="#example-2">EXAMPLE 2</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#example-3">EXAMPLE 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-4">EXAMPLE 4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-5">EXAMPLE 5</a>
     </li>
         </ul>
     </li>
@@ -170,13 +176,17 @@
 <h2 id="synopsis">SYNOPSIS</h2>
 <p>Sets the configuration for connecting to ProGet.</p>
 <h2 id="syntax">SYNTAX</h2>
-<h3 id="default-default">default (Default)</h3>
-<pre><code>Set-ProGetConfiguration -Hostname &lt;String&gt; -Credential &lt;PSCredential&gt; [-NonSslPort &lt;Int32&gt;] [-Name &lt;String&gt;]
- [-ApiKey &lt;String&gt;] [-ProgressAction &lt;ActionPreference&gt;] [&lt;CommonParameters&gt;]
+<h3 id="apikey-default">Apikey (Default)</h3>
+<pre><code>Set-ProGetConfiguration -Hostname &lt;String&gt; [-NonSslPort &lt;Int32&gt;] [-UseSSL] [-SslPort &lt;Int32&gt;] [-Name &lt;String&gt;]
+ -ApiKey &lt;String&gt; [-ProgressAction &lt;ActionPreference&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
-<h3 id="ssl">ssl</h3>
+<h3 id="both">Both</h3>
 <pre><code>Set-ProGetConfiguration -Hostname &lt;String&gt; -Credential &lt;PSCredential&gt; [-NonSslPort &lt;Int32&gt;] [-UseSSL]
- -SslPort &lt;Int32&gt; [-Name &lt;String&gt;] [-ApiKey &lt;String&gt;] [-ProgressAction &lt;ActionPreference&gt;] [&lt;CommonParameters&gt;]
+ [-SslPort &lt;Int32&gt;] [-Name &lt;String&gt;] -ApiKey &lt;String&gt; [-ProgressAction &lt;ActionPreference&gt;] [&lt;CommonParameters&gt;]
+</code></pre>
+<h3 id="credential">Credential</h3>
+<pre><code>Set-ProGetConfiguration -Hostname &lt;String&gt; -Credential &lt;PSCredential&gt; [-NonSslPort &lt;Int32&gt;] [-UseSSL]
+ [-SslPort &lt;Int32&gt;] [-Name &lt;String&gt;] [-ProgressAction &lt;ActionPreference&gt;] [&lt;CommonParameters&gt;]
 </code></pre>
 <h2 id="description">DESCRIPTION</h2>
 <p>The `Set-ProGetConfiguration` function allows you to configure the connection settings for ProGet, including hostname, credentials, ports, and SSL options.
@@ -187,10 +197,18 @@ The configuration can be saved with a custom name for later use.</p>
 </code></pre>
 <p>Sets the configuration for ProGet with the specified hostname and credentials.</p>
 <h3 id="example-2">EXAMPLE 2</h3>
+<pre><code>Set-ProGetConfiguration -Hostname &quot;proget.example.com&quot; -ApiKey asdf8675309
+</code></pre>
+<p>Sets the configuration for ProGet with the specified hostname and apikey</p>
+<h3 id="example-3">EXAMPLE 3</h3>
+<pre><code>Set-ProGetConfiguration -Hostname &quot;proget.example.com&quot; -ApiKey asdf8675309 -Credential (Get-Credential)
+</code></pre>
+<p>Sets the configuration for ProGet with the specified hostname, credential, and apikey</p>
+<h3 id="example-4">EXAMPLE 4</h3>
 <pre><code>Set-ProGetConfiguration -Hostname &quot;proget.example.com&quot; -Credential (Get-Credential) -UseSSL -SslPort 8443
 </code></pre>
 <p>Sets the configuration for ProGet with SSL enabled and a custom SSL port.</p>
-<h3 id="example-3">EXAMPLE 3</h3>
+<h3 id="example-5">EXAMPLE 5</h3>
 <pre><code>Set-ProGetConfiguration -Hostname &quot;proget.example.com&quot; -Credential (Get-Credential) -Name &quot;CustomConfig&quot;
 </code></pre>
 <p>Sets the configuration for ProGet with a custom configuration name.</p>
@@ -212,7 +230,7 @@ Accept wildcard characters: False
 <p>A PSCredential object containing the username and password for authenticating with the ProGet server.
 This parameter is mandatory.</p>
 <pre><code class="language-yaml">Type: PSCredential
-Parameter Sets: (All)
+Parameter Sets: Both, Credential
 Aliases:
 
 Required: True
@@ -238,7 +256,7 @@ Accept wildcard characters: False
 <p>Specifies whether to use SSL for the connection.
 This parameter is part of the 'ssl' parameter set.</p>
 <pre><code class="language-yaml">Type: SwitchParameter
-Parameter Sets: ssl
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -252,10 +270,10 @@ Accept wildcard characters: False
 Defaults to 443.
 This parameter is mandatory when `UseSSL` is specified.</p>
 <pre><code class="language-yaml">Type: Int32
-Parameter Sets: ssl
+Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: 443
 Accept pipeline input: False
@@ -278,12 +296,12 @@ Accept wildcard characters: False
 <p>The API key to use for authentication.
 Defaults to 'SetMe'.</p>
 <pre><code class="language-yaml">Type: String
-Parameter Sets: (All)
+Parameter Sets: Apikey, Both
 Aliases:
 
-Required: False
+Required: True
 Position: Named
-Default value: SetMe
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 </code></pre>
