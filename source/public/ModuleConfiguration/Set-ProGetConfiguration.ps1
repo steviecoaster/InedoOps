@@ -33,6 +33,16 @@ function Set-ProGetConfiguration {
     Sets the configuration for ProGet with the specified hostname and credentials.
 
     .EXAMPLE
+    Set-ProGetConfiguration -Hostname "proget.example.com" -ApiKey asdf8675309
+
+    Sets the configuration for ProGet with the specified hostname and apikey
+
+    .EXAMPLE
+    Set-ProGetConfiguration -Hostname "proget.example.com" -ApiKey asdf8675309 -Credential (Get-Credential)
+
+    Sets the configuration for ProGet with the specified hostname, credential, and apikey
+
+    .EXAMPLE
     Set-ProGetConfiguration -Hostname "proget.example.com" -Credential (Get-Credential) -UseSSL -SslPort 8443
 
     Sets the configuration for ProGet with SSL enabled and a custom SSL port.
@@ -42,13 +52,14 @@ function Set-ProGetConfiguration {
 
     Sets the configuration for ProGet with a custom configuration name.
 #>
-    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Set-ProGetConfiguration' , DefaultParameterSetName = 'default')]
+    [CmdletBinding(HelpUri = 'https://steviecoaster.github.io/Pagootle/Commands/Set-ProGetConfiguration' , DefaultParameterSetName = 'Apikey')]
     Param(
         [Parameter(Mandatory)]
         [String]
         $Hostname,
 
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ParameterSetName = 'Credential')]
+        [Parameter(Mandatory, ParameterSetName = 'Both')]
         [System.Management.Automation.PSCredential]
         $Credential,
         
@@ -56,11 +67,11 @@ function Set-ProGetConfiguration {
         [Int]
         $NonSslPort = '8624',
 
-        [Parameter(ParameterSetName = 'ssl')]
+        [Parameter()]
         [Switch]
         $UseSSL,
 
-        [Parameter(ParameterSetName = 'ssl', Mandatory)]
+        [Parameter()]
         [Int]
         $SslPort = 443,
 
@@ -68,23 +79,40 @@ function Set-ProGetConfiguration {
         [String]
         $Name = 'ProGet',
 
-        [Parameter()]
+        [Parameter(Mandatory, ParameterSetName = 'Apikey')]
+        [Parameter(Mandatory, ParameterSetName = 'Both')]
         [String]
-        $ApiKey = 'SetMe'
+        $ApiKey
     )
 
     end {
         $Configuration = @{
             Hostname   = $Hostname
-            Credential = $Credential
             NonSslPort = $NonSslPort
-            ApiKey     = [PSCredential]::new('null', ($ApiKey | ConvertTo-SecureString -AsPlainText -Force))
+        }
+
+        if ($UseSSL) {
+            $Configuration.Add('UseSSL', $UseSSL)
+            $Configuration.Add('SSLPort', $SslPort)
         }
 
         switch ($PSCmdlet.ParameterSetName) {
-            'ssl' {
-                $Configuration.Add('UseSSL', $UseSSL)
-                $Configuration.Add('SSLPort', $SslPort)
+            
+            'Credential' {
+                $Configuration.Add('Credential', $Credential)
+            }
+
+            'ApiKey' {
+                $Configuration.Add('ApiKey', $([PSCredential]::new('null', ($ApiKey | ConvertTo-SecureString -AsPlainText -Force))))
+            }
+
+            'Both' {
+                if (-not $Credential -or -not $ApiKey) {
+                    throw "Both Credential and ApiKey must be provided when using the 'Both' parameter set."
+                }
+                
+                $Configuration.Add('Credential', $Credential)
+                $Configuration.Add('ApiKey', $([PSCredential]::new('null', ($ApiKey | ConvertTo-SecureString -AsPlainText -Force))))
             }
         }
         

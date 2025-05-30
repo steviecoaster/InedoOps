@@ -12,16 +12,22 @@ Sets the configuration for connecting to ProGet.
 
 ## SYNTAX
 
-### default (Default)
+### Apikey (Default)
 ```
-Set-ProGetConfiguration -Hostname <String> -Credential <PSCredential> [-NonSslPort <Int32>] [-Name <String>]
- [-ApiKey <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Set-ProGetConfiguration -Hostname <String> [-NonSslPort <Int32>] [-UseSSL] [-SslPort <Int32>] [-Name <String>]
+ -ApiKey <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
-### ssl
+### Both
 ```
 Set-ProGetConfiguration -Hostname <String> -Credential <PSCredential> [-NonSslPort <Int32>] [-UseSSL]
- -SslPort <Int32> [-Name <String>] [-ApiKey <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
+ [-SslPort <Int32>] [-Name <String>] -ApiKey <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
+```
+
+### Credential
+```
+Set-ProGetConfiguration -Hostname <String> -Credential <PSCredential> [-NonSslPort <Int32>] [-UseSSL]
+ [-SslPort <Int32>] [-Name <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,12 +45,26 @@ Sets the configuration for ProGet with the specified hostname and credentials.
 
 ### EXAMPLE 2
 ```
+Set-ProGetConfiguration -Hostname "proget.example.com" -ApiKey asdf8675309
+```
+
+Sets the configuration for ProGet with the specified hostname and apikey
+
+### EXAMPLE 3
+```
+Set-ProGetConfiguration -Hostname "proget.example.com" -ApiKey asdf8675309 -Credential (Get-Credential)
+```
+
+Sets the configuration for ProGet with the specified hostname, credential, and apikey
+
+### EXAMPLE 4
+```
 Set-ProGetConfiguration -Hostname "proget.example.com" -Credential (Get-Credential) -UseSSL -SslPort 8443
 ```
 
 Sets the configuration for ProGet with SSL enabled and a custom SSL port.
 
-### EXAMPLE 3
+### EXAMPLE 5
 ```
 Set-ProGetConfiguration -Hostname "proget.example.com" -Credential (Get-Credential) -Name "CustomConfig"
 ```
@@ -75,7 +95,7 @@ This parameter is mandatory.
 
 ```yaml
 Type: PSCredential
-Parameter Sets: (All)
+Parameter Sets: Both, Credential
 Aliases:
 
 Required: True
@@ -107,7 +127,7 @@ This parameter is part of the 'ssl' parameter set.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ssl
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -124,10 +144,10 @@ This parameter is mandatory when \`UseSSL\` is specified.
 
 ```yaml
 Type: Int32
-Parameter Sets: ssl
+Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: 443
 Accept pipeline input: False
@@ -156,12 +176,12 @@ Defaults to 'SetMe'.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: Apikey, Both
 Aliases:
 
-Required: False
+Required: True
 Position: Named
-Default value: SetMe
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
